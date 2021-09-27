@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{url_for('static', filename='pages/index.css')}}" />
+    <title>Место</title>
+</head>
+
+<body class="page">
+    <header class="header page__header">
+        <img class="header__logo" src=" {{url_for('static', filename='source/images/svg-images/mesto_logo.svg')}}" alt="Лого" />
+    </header>
+    <main class="content">
+        <section class="profile page__profile">
+
+            <button class="profile__button-add" type="button" formaction="/news"></button>
+        </section>
+        <section class="elements page__elements">
+
+        </section>
+
+    </main>
+    <footer class="footer page__footer">
+        <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
+    </footer>
+    <div class="popup popup_type_profile">
+        <div class="popup__container">
+            <button class="popup__button-close" type="button"></button>
+            <form class="popup__form" name="formProfileInfo" novalidate>
+
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <input class="popup__input" value="Жак-Ив Кусто" placeholder="Имя" required name="fio" id="profile-name"
+                maxlength="40" minlength="2"/>
+                <span class="popup__input-error-info profile-name-error"></span>
+                <input class="popup__input" value="Исследователь океана" placeholder="О себе" required name="aboutYourself"
+                       id="profile-about" maxlength="200" minlength="2"/>
+                <span class="popup__input-error-info profile-about-error"></span>
+                <input class="popup__button-save" type="submit" value="Сохранить" />
+             </form>
+        </div>
+    </div>
+    <div class="popup popup_type_card-add">
+        <div class="popup__container">
+            <button class="popup__button-close" type="button"></button>
+            <form class="popup__form" name="formAddMesto" novalidate>
+
+                <h2 class="popup__title">Новое место</h2>
+                <input class="popup__input" value="" placeholder="Название" required name="mestoName" id="mesto-name"/>
+                <span class="popup__input-error-info mesto-name-error"></span>
+                <input class="popup__input" value="" placeholder="Ссылка на картинку" required name="mestoURL"  id="mesto-url" type="url"/>
+                <span class="popup__input-error-info mesto-url-error"></span>
+                <input class="popup__button-save" type="submit" value="Создать" />
+            </form>
+        </div>
+    </div>
+
+    <div class="popup popup_opacity popup_type_picture">
+        <div class="popup__container-photo">
+            <button class="popup__button-close" type="button"></button>
+            <img class="popup__photo" src="#" alt="#" />
+            <p class="popup__photo-name"></p>
+        </div>
+    </div>
+
+    <template id="card">
+        <article class="element">
+            <button class="element__trash" type="button"></button>
+            <a href="">
+                <img class="element__photo" src="./source/images/png-images/karachaevsk.png" alt="Фото места" />
+                <div class="element__container">
+                    <h2 class="element__title">Карачаево-Черкессия</h2>
+                    <button class="element__like" type="button"></button>
+                </div>
+                <p class="element__date"></p>
+            </a>
+        </article>
+    </template>
+    <template id="info">
+        {% for i in item %}
+        <div class="node">
+            <h1 class="title">{{i.title}}</h1>
+            <h1 class="url">{{i.url}}</h1>
+            <h1 class="text">{{i.text}}</h1>
+            <h1 class="date">{{i.date}}</h1>
+            <h1 class="image">{{i.image}}</h1>
+            <h1 class="id">{{i.id}}</h1>
+        </div>
+        {% endfor %}
+    </template>
+    <script>
+
+    </script>
+   <!-- <script src="{{url_for('static', filename = 'scripts/validate.js')}}"></script>-->
+    <script src="{{url_for('static', filename = 'scripts/script.js')}}"></script>
+</body>
+
+</html>

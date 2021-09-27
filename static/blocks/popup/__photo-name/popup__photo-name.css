@@ -1,0 +1,12 @@
+.popup__photo-name{
+
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 15px;
+    text-align: left;
+    margin: 0;
+    color: white;
+    align-self: center;
+    width: fit-content;
+}
