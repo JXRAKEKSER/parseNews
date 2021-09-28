@@ -2,15 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title></title>
+    <link rel="stylesheet" href="{{url_for('static', filename='pages/index.css')}}" />
 </head>
-<body>
-{% for i in data %}
-<h1 class="title">{{i.title}}</h1>
-<h1 class="url">{{i.url}}</h1>
-<h1 class="text">{{i.text}}</h1>
-<h1 class="date">{{i.date}}</h1>
-<h1 class="image">{{i.image}}</h1>
-{% endfor %}
+<body class="page">
+<header class="header page__header">
+    <img class="header__logo" src=" {{url_for('static', filename='source/images/svg-images/mesto_logo.svg')}}" alt="Лого" />
+</header>
+<main class="content">
+    <section class="news page__news">
+        <h1 class="news__title"></h1>
+        <img class="news__image" src="" alt="" />
+        <p class="news__date"></p>
+        <article class="news__text"></article>
+    </section>
+</main>
+ <footer class="footer page__footer">
+        <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
+ </footer>
+<template id="news-detail">
+    {% for i in data %}
+    <h1 class="title">{{i.title}}</h1>
+    <h1 class="url">{{i.url}}</h1>
+    <h1 class="text">{{i.text}}</h1>
+    <h1 class="date">{{i.date}}</h1>
+    <h1 class="image">{{i.image}}</h1>
+    {% endfor %}
+</template>
+ <script src="{{url_for('static', filename = 'scripts/news.js')}}"></script>
 </body>
 </html>

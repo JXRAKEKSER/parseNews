@@ -1,0 +1,32 @@
+ .news{
+    width: calc(100% - 2*200px);
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 320px) and (max-width: 500px) {
+    .news {
+        width: calc(100% - 2*19px);
+
+    }
+}
+
+@media screen and (min-width: 500px) and (max-width: 670px) {
+    .news {
+        width: calc(100% - 2*5px);
+
+    }
+}
+
+@media screen and (min-width: 670px) and (max-width: 1025px) {
+    .news {
+        width: calc(100% - 2*24px);
+
+    }
+}
+
+@media screen and (min-width: 1281px) {
+    .news {
+        width: 880px;
+    }
+}

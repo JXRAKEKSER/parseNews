@@ -9,9 +9,9 @@ def index():
     item = index_mod.getAllDataList();
     return render_template('index.html', item=item);
 
-@app.route('/news/')
+@app.route('/news/<path:url>')
 def getNews(url):
-    data = index_mod.findNews('/gubernator/tekush/367863/');
+    data = index_mod.findNews(url);
     return render_template('news.html', data=data);
 
 if __name__ == '__main__':

@@ -58,3 +58,9 @@
 @import url(../blocks/popup/__input/_type/popup__input_type_error.css);
 @import url(../blocks/popup/__input-error-info/popup__input-error-info.css);
 @import url(../blocks/popup/__button-save/_inactive/popup__button-save_inactive.css);
+
+/*News*/
+@import url(../blocks/news/news.css);
+@import url(../blocks/page/__news/page__news.css);
+@import url(../blocks/news/__title/news__title.css);
+

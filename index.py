@@ -35,10 +35,11 @@ def refreshNews():
 
 ##print(crud.findData(crud.collection, {'title': 'В Волгоградской области с начала года удвоилось число самозанятых '}));
 
-def findNews(url):
-
-     dbObj = crud.collection.find_one({'url': 'http://www.volgograd.ru'+url});
-     return {'title': dbObj['title'], 'date' : dbObj['date'],'text' : dbObj['text'],'url' : dbObj['url'], 'image' : dbObj['image']}
+def findNews(urlWithoutDomain):
+     list = [];
+     dbObj = crud.collection.find_one({'url': 'http://www.volgograd.ru/'+urlWithoutDomain});
+     list.append({'title': dbObj['title'], 'date' : dbObj['date'],'text' : dbObj['text'],'url' : dbObj['url'], 'image' : dbObj['image']});
+     return list;
 
 def getAllDataList():
     list = [];
