@@ -28,34 +28,10 @@ const formAddMestoContainer = document.querySelector('.popup_type_card-add .popu
 // блок объявления и инициализации элементов просмотра картинки
 const mestoPhotoPopup = document.querySelector('.popup_type_picture');
 const closeMestoPhotoPopupButton =  document.querySelector('.popup_type_picture .popup__button-close');
-// массив данных для загрузки дефолтных карточек
-const initialCards  = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-]
-// функция рендеринга дефолтных карточек
+
+let reloadByInterval = setInterval(() => {window.location.reload()}, 10000);
+
+reloadByInterval;
 
 function getData(){
     const dataTemplate = document.querySelector('#info').content;

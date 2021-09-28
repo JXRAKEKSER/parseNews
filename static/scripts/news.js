@@ -15,6 +15,7 @@ function getData() {
 }
 
 function setContent(data){
+    document.querySelector('title').textContent = data.title;
     title.textContent = data.title;
     image.src = data.image;
     image.alt = `${data.title}`;
