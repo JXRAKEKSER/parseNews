@@ -211,7 +211,7 @@ closeEditProfilePopupButton.addEventListener('click',() => closePopup(popupEditP
 formProfileInfoContainer.addEventListener('submit', saveProfileInfo);
 
 //addMesto
-addMestoButton.addEventListener('click', () => openPopup(addMestoPopup));
+//addMestoButton.addEventListener('click', () => openPopup(addMestoPopup));
 closeAddMestoPopupButton.addEventListener('click', () => closePopup(addMestoPopup));
 formAddMestoContainer.addEventListener('submit', addMestoCard);
 

@@ -14,7 +14,11 @@ def parseNote(newsUrl):
     newsObj = News();
     newsObj.setTitle(re.sub('\s+', ' ', soupObj.find('h1').text));
     newsObj.setUrl(newsUrl);
-    newsObj.setText(re.sub('\s+', ' ', soupObj.find('div', class_ = 'news-detail').find('p').text));
+    textAccum = '';
+    for paragraph in soupObj.find('div', class_ = 'news-detail').find_all('p'):
+        if(len(paragraph.text)>0):
+            textAccum = textAccum + re.sub('\s+', ' ', paragraph.text);
+    newsObj.setText(textAccum);
     newsObj.setDate(re.sub('\s+',' ',soupObj.find('div', class_ = 'date').text));
     newsObj.setImage(url+str(soupObj.find('img', class_ = 'detail_picture')['src']));
     return newsObj;

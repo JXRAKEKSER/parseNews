@@ -1,4 +1,7 @@
 .profile__button-add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 150px;
     height: 50px;
     padding: 0;
@@ -6,7 +9,9 @@
     border: 2px solid #FFFFFF;
     border-radius: 2px;
     background-color: #000000;
-    background-image: url(../../../source/images/svg-images/addButton-background.svg);
+    color: #FFFFFF;
+
+    //background-image: url(../../../source/images/svg-images/addButton-background.svg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 22px;
