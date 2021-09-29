@@ -1,8 +1,3 @@
-//import data from './data';
-/*Я изначально хотел разделить данные и функции - создать отдельный файл для них, но столкнулся с ошибкой экспортирования
- SyntaxError: Cannot use import statement outside a module, поискал информацию и нашел, что это какая-то замутка с бабелем, толком не вник и сейчас нет времени на это
-  надеюсь, Вы не вернете работу на доработку из-за этого, мне всё равно нужно разобраться с этим, чтобы дальнейшие работы сдавать
-  Не стал удалять код для варинта использования даных из файла*/
 
 // блок объявления и инициализации элементов редактирования информации профиля
 const editProfileButton = document.querySelector('.profile-info__button-edit');
@@ -22,14 +17,44 @@ const elementsContainer = document.querySelector('.elements');
 const addMestoButton = document.querySelector('.profile__button-add');
 const addMestoPopup = document.querySelector('.popup_type_card-add');
 const closeAddMestoPopupButton = document.querySelector('.popup_type_card-add .popup__button-close');
-const inputMestoName = document.querySelector('input[name=mestoName]');
+const interval = document.querySelector('input[name=mestoName]');
 const inputMestoURL = document.querySelector('input[name=mestoURL]');
 const formAddMestoContainer = document.querySelector('.popup_type_card-add .popup__form');
 // блок объявления и инициализации элементов просмотра картинки
 const mestoPhotoPopup = document.querySelector('.popup_type_picture');
 const closeMestoPhotoPopupButton =  document.querySelector('.popup_type_picture .popup__button-close');
 
-let reloadByInterval = setInterval(() => {window.location.reload()}, 10000);
+//блок переменных управления страницей
+const checkbox = document.querySelector('.page-controll-form__checkbox');
+let intervalValue = 0;
+const storage = window.localStorage;
+const convertToBool = (stringValue) => {
+    if(stringValue === 'true'){
+        return true;
+    }else{
+        return false;
+    }
+}
+checkbox.checked = convertToBool(storage.getItem('check'));
+
+checkbox.addEventListener('change', () => {
+    if(checkbox.checked){
+        openPopup(addMestoPopup);
+        storage.setItem('check', 'true');
+        console.log(storage.getItem('check'))
+    }else{
+        storage.setItem('check', 'false');
+        console.log(storage.getItem('check'))
+    }
+});
+
+let reloadByInterval = setInterval(() => {
+    if(convertToBool(storage.getItem('check')) === true && Number(storage.getItem('interval')) >= 5){
+        window.location.reload();
+    }else{
+
+    }
+}, Number(storage.getItem('interval')));
 
 reloadByInterval;
 
@@ -88,6 +113,7 @@ function clearFormInputs(popup) {
 }
 
  function openPopup(popup) {
+    interval.value = storage.getItem('interval');
     popup.classList.add('popup_opened');
     document.querySelector('.page').addEventListener('keydown', closePopupByKeyboard);
 
@@ -98,16 +124,13 @@ function closePopup (popup) {
     document.querySelector('.page').removeEventListener('keydown', closePopupByKeyboard);
     const inputsList = Array.from(popup.querySelectorAll('.popup__input'));
 
-    // внутри функции чистки попапа проверяется имеет ли попап форму и только в этом случае очищает её,
-    // или это чисто концептуальный вопрос в том, чтобы вызывать очистку только на попапах с формой?
-    clearFormInputs(popup);
-    toogleSubmitButton(inputsList, popup.querySelector('.popup__button-save'), 'popup__button-save_inactive');
+    //toogleSubmitButton(inputsList, popup.querySelector('.popup__button-save'), 'popup__button-save_inactive');
 }
 
 function openProfilePopup() {
     inputItemName.value = profileName.textContent;
     inputItemRole.value = profileInfoRole.textContent;
-   
+
     openPopup(popupEditProfile);
 
 }
@@ -137,11 +160,12 @@ function setCardEventListenets(card) {
 function addMestoCard(evt) {
     evt.preventDefault();
 
-    elementsContainer.prepend(createCard({ name: inputMestoName.value, link:inputMestoURL.value}));
-
-    clearFormInputs(addMestoPopup);
+    console.log(interval.value);
+    intervalValue = parseInt(interval.value);
+    storage.setItem('interval', `${intervalValue}`);
+    console.log(intervalValue)
     const inputsList = Array.from(evt.target.closest('.popup__form').querySelectorAll('.popup__input'));
-    toogleSubmitButton(inputsList, evt.target.closest('.popup__form').querySelector('.popup__button-save'), 'popup__button-save_inactive');
+   // toogleSubmitButton(inputsList, evt.target.closest('.popup__form').querySelector('.popup__button-save'), 'popup__button-save_inactive');
     closePopup(addMestoPopup);
 };
 

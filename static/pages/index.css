@@ -64,3 +64,6 @@
 @import url(../blocks/page/__news/page__news.css);
 @import url(../blocks/news/__title/news__title.css);
 
+/*Page-controll-form*/
+@import url(../blocks/page-controll-form/page-controll-form.css);
+@import url(../blocks/page-controll-form/__checkbox/page-controll-form__checkbox.css);

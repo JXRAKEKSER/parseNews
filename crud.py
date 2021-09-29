@@ -6,6 +6,7 @@ client = MongoClient('localhost', 27017);
 db = client['news'];
 
 collection = db['parseNews'];
+collection_control = db['control'];
 
 def insertData(collection, data):
     return collection.insert_one(data)

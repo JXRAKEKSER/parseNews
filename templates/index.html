@@ -15,6 +15,10 @@
     <main class="content">
         <section class="profile page__profile">
 
+            <form class="page-controll-form">
+                <label>Включить автоматический парсинг</label>
+                <input class="page-controll-form__checkbox" type="checkbox" />
+            </form>
             <a class="profile__button-add" href="/">Reload</a>
         </section>
         <section class="elements page__elements">
@@ -28,7 +32,7 @@
     <div class="popup popup_type_profile">
         <div class="popup__container">
             <button class="popup__button-close" type="button"></button>
-            <form class="popup__form" name="formProfileInfo" novalidate>
+            <form class="popup__form" name="formProfileInfo">
 
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <input class="popup__input" value="Жак-Ив Кусто" placeholder="Имя" required name="fio" id="profile-name"
@@ -44,14 +48,12 @@
     <div class="popup popup_type_card-add">
         <div class="popup__container">
             <button class="popup__button-close" type="button"></button>
-            <form class="popup__form" name="formAddMesto" novalidate>
+            <form class="popup__form" name="formAddMesto" >
 
-                <h2 class="popup__title">Новое место</h2>
-                <input class="popup__input" value="" placeholder="Название" required name="mestoName" id="mesto-name"/>
+                <h2 class="popup__title">Настройки интервала</h2>
+                <input class="popup__input" value="" placeholder="Интервал в милисекундах" required min="5" name="mestoName" id="mesto-name"/>
                 <span class="popup__input-error-info mesto-name-error"></span>
-                <input class="popup__input" value="" placeholder="Ссылка на картинку" required name="mestoURL"  id="mesto-url" type="url"/>
-                <span class="popup__input-error-info mesto-url-error"></span>
-                <input class="popup__button-save" type="submit" value="Создать" />
+                <input class="popup__button-save" type="submit" value="Задать" />
             </form>
         </div>
     </div>
@@ -92,7 +94,7 @@
     <script>
 
     </script>
-   <!-- <script src="{{url_for('static', filename = 'scripts/validate.js')}}"></script>-->
+  <!-- <script src="{{url_for('static', filename = 'scripts/validate.js')}}"></script>-->
     <script src="{{url_for('static', filename = 'scripts/script.js')}}"></script>
 </body>
 

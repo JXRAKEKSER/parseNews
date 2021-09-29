@@ -22,6 +22,7 @@ def parseNote(newsUrl):
     newsObj.setDate(re.sub('\s+',' ',soupObj.find('div', class_ = 'date').text));
     newsObj.setImage(url+str(soupObj.find('img', class_ = 'detail_picture')['src']));
     return newsObj;
+
 def parseNewsUrlList(url):
 
     indexPage =  requests.get(url);
@@ -37,7 +38,7 @@ def refreshNews():
         news = parseNote(url+newsListItem.get('href'));
         crud.insertData(crud.collection, {'title': news.getTitle(), 'date': news.getDate(), 'text': news.getText(), 'url': news.getUrl(), 'image': news.getImage()});
 
-##print(crud.findData(crud.collection, {'title': 'В Волгоградской области с начала года удвоилось число самозанятых '}));
+
 
 def findNews(urlWithoutDomain):
      list = [];
