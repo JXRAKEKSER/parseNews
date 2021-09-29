@@ -1,14 +1,4 @@
 
-// блок объявления и инициализации элементов редактирования информации профиля
-const editProfileButton = document.querySelector('.profile-info__button-edit');
-const closeEditProfilePopupButton = document.querySelector('.popup_type_profile .popup__button-close');
-const popupEditProfile = document.querySelector('.popup_type_profile');
-const profileName = document.querySelector('.profile-info__name');
-const profileInfoRole = document.querySelector('.profile-info__role');
-const inputItemRole = document.querySelector('.popup_type_profile input[name=aboutYourself]');
-const inputItemName = document.querySelector('.popup_type_profile input[name=fio]');
-const formProfileInfoContainer = document.querySelector('.popup_type_profile .popup__form');
-
 // блок объявления и инициализации общих элементов(контейнеры, секции и т.п. семантически общие вещи)
 const elementsContainer = document.querySelector('.elements');
 
@@ -18,7 +8,6 @@ const addMestoButton = document.querySelector('.profile__button-add');
 const addMestoPopup = document.querySelector('.popup_type_card-add');
 const closeAddMestoPopupButton = document.querySelector('.popup_type_card-add .popup__button-close');
 const interval = document.querySelector('input[name=mestoName]');
-const inputMestoURL = document.querySelector('input[name=mestoURL]');
 const formAddMestoContainer = document.querySelector('.popup_type_card-add .popup__form');
 // блок объявления и инициализации элементов просмотра картинки
 const mestoPhotoPopup = document.querySelector('.popup_type_picture');
@@ -49,7 +38,7 @@ checkbox.addEventListener('change', () => {
 });
 
 let reloadByInterval = setInterval(() => {
-    if(convertToBool(storage.getItem('check')) === true && Number(storage.getItem('interval')) >= 5){
+    if(convertToBool(storage.getItem('check')) === true && Number(storage.getItem('interval')) >= 5 && !addMestoPopup.classList.contains('popup_opened')){
         window.location.reload();
     }else{
 
@@ -68,9 +57,6 @@ function getData(){
         });
         return dataObj;
     });
-    /*const data = Array.from(dataTemplate.forEach( node => {
-        return node.children;
-    });*/
     return data;
 
 
@@ -111,14 +97,14 @@ function clearFormInputs(popup) {
     }
 
 }
-
+// открытие попапа
  function openPopup(popup) {
     interval.value = storage.getItem('interval');
     popup.classList.add('popup_opened');
     document.querySelector('.page').addEventListener('keydown', closePopupByKeyboard);
 
 };
-
+//закрытие попапа
 function closePopup (popup) {
     popup.classList.remove('popup_opened');
     document.querySelector('.page').removeEventListener('keydown', closePopupByKeyboard);
@@ -127,23 +113,9 @@ function closePopup (popup) {
     //toogleSubmitButton(inputsList, popup.querySelector('.popup__button-save'), 'popup__button-save_inactive');
 }
 
-function openProfilePopup() {
-    inputItemName.value = profileName.textContent;
-    inputItemRole.value = profileInfoRole.textContent;
-
-    openPopup(popupEditProfile);
-
-}
 
 
-function saveProfileInfo(evt) {
-    evt.preventDefault();
 
-    profileName.textContent = inputItemName.value;
-    profileInfoRole.textContent = inputItemRole.value;
-    closePopup(popupEditProfile);
-
-}
 
 function setCardEventListenets(card) {
     const likeBtn = card.querySelector('.element__like');
@@ -205,13 +177,6 @@ preloadCards(getData());
 
 
 // блок слушателей кнопок
-//profileInfo
-
-closeEditProfilePopupButton.addEventListener('click',() => closePopup(popupEditProfile));
-formProfileInfoContainer.addEventListener('submit', saveProfileInfo);
-
-//addMesto
-//addMestoButton.addEventListener('click', () => openPopup(addMestoPopup));
 closeAddMestoPopupButton.addEventListener('click', () => closePopup(addMestoPopup));
 formAddMestoContainer.addEventListener('submit', addMestoCard);
 

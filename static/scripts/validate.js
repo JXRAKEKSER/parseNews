@@ -1,5 +1,5 @@
 function isValid(input) {
-    return input.validity.valid;
+    return input.validity.valid && Number.isInteger(input.value);
 }
 
 function hasValidationFail(inputsList) {
