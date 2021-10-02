@@ -32,11 +32,16 @@ def parseNewsUrlList(url):
 
 
 def refreshNews():
-    crud.collection.delete_many({});
-    print(crud.collection.count_documents({}));
+
     for newsListItem in parseNewsUrlList(url):
-        news = parseNote(url+newsListItem.get('href'));
-        crud.insertData(crud.collection, {'title': news.getTitle(), 'date': news.getDate(), 'text': news.getText(), 'url': news.getUrl(), 'image': news.getImage()});
+        news = parseNote(url + newsListItem.get('href'));
+        if (crud.collection.find_one({'title': news.getTitle()}) is None):
+            crud.insertData(crud.collection,
+                            {'title': news.getTitle(), 'date': news.getDate(),
+                             'text': news.getText(),
+                             'url': news.getUrl(), 'image': news.getImage()});
+        else:
+            pass
 
 
 
@@ -52,7 +57,10 @@ def getAllDataList():
         list.append({ 'id':str(item['_id']), 'title':item['title'], 'date' : item['date'],'text' : item['text'],'url' : item['url'], 'image' : item['image']});
     return list;
 if __name__ == '__main__':
-    print(getAllDataList());
+    refreshNews();
+
+
+
 
 
 
